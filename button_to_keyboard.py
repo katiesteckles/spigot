@@ -1,7 +1,7 @@
-import gpio
+import gpiozero
 import keyboard
 
-button = gpio.Button(9)
+button = gpiozero.Button(9)
 button_state=False
 
 while True:
