@@ -20,9 +20,8 @@ html, body {
 
 var myDroplet;
 var theWater;
-
-let state = [1n, 0n, 0n, 1n];
-let i = 1n;
+var state = [1n, 0n, 0n, 1n];
+var i = 1n;
 
 window.addEventListener("keyup", handleEvent, false)
 
@@ -56,6 +55,9 @@ var myGameArea = {
     },
     stop : function() {
         this.isStopped = true;
+        // reset values for Spigot Algorithm
+        state = [1n, 0n, 0n, 1n];
+		i = 1n;
     },    
     clear : function() {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -88,10 +90,6 @@ function droplet(width, height, color, x, y, type) {
         	digitImage.height = this.height;
         	}
         ctx.drawImage(digitImage, this.x, this.y, digitImage.width, digitImage.height);
-        // ctx.fillRect(this.x, this.y, this.width, this.height);
-        // ctx.font = "30px Arial";
-        // ctx.fillStyle = "white";
-        // ctx.fillText(this.digit, this.x + 10, this.y + 35);
     }
     this.newPos = function() {
 		this.gravitySpeed += this.gravity;
