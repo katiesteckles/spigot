@@ -23,20 +23,29 @@ var theWater;
 var state = [1n, 0n, 0n, 1n];
 var i = 1n;
 
-window.addEventListener("keyup", handleEvent, false)
-
-function handleEvent(event) {
-	if (event.key === 'a') {
-		myGameArea.start();
-	} else if (event.key === 'b') {
-		myGameArea.stop();
-	}
-}
-
 const CANVAS_WIDTH=485
 const CANVAS_HEIGHT=805
 const DROPLET_WIDTH=126
 const DROPLET_HEIGHT=150
+
+// get it to initially draw the canvas
+//canvas = document.createElement("canvas");
+//canvas.width = CANVAS_WIDTH;
+//canvas.height = CANVAS_HEIGHT;
+//theWater = new bgitem(CANVAS_WIDTH, 150, "#6fb0dc", 0, CANVAS_HEIGHT - 150);
+//context = this.canvas.getContext("2d");
+//document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+
+window.addEventListener("keyup", handleEvent, false)
+
+function handleEvent(event) {
+	if (event.key === 'b') {
+		myGameArea.start();
+	} else if (event.key === 'a') {
+		myGameArea.stop();
+	}
+}
+
 
 var frame = 0; //initialise 0-3 loop for frame number
 
