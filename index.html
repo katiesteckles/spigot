@@ -28,14 +28,6 @@ const CANVAS_HEIGHT=805
 const DROPLET_WIDTH=126
 const DROPLET_HEIGHT=150
 
-// get it to initially draw the canvas
-//canvas = document.createElement("canvas");
-//canvas.width = CANVAS_WIDTH;
-//canvas.height = CANVAS_HEIGHT;
-//theWater = new bgitem(CANVAS_WIDTH, 150, "#6fb0dc", 0, CANVAS_HEIGHT - 150);
-//context = this.canvas.getContext("2d");
-//document.body.insertBefore(this.canvas, document.body.childNodes[0]);
-
 window.addEventListener("keyup", handleEvent, false)
 
 function handleEvent(event) {
@@ -54,12 +46,22 @@ var myGameArea = {
 	start : function() {
 		myDroplet = new droplet(DROPLET_WIDTH, DROPLET_HEIGHT, "blue", (CANVAS_WIDTH/2)-(DROPLET_WIDTH/2), 0 - DROPLET_HEIGHT, 0);
 		theWater = new bgitem(CANVAS_WIDTH, 150, "#6fb0dc", 0, CANVAS_HEIGHT - 150);
-        this.canvas.width = CANVAS_WIDTH;
+		 this.canvas.width = CANVAS_WIDTH;
         this.canvas.height = CANVAS_HEIGHT;
         this.context = this.canvas.getContext("2d");
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.interval = setInterval(updateGameArea, 60); 
-        this.isStopped = false ;      
+        this.isStopped = false ;         
+    },
+    initialise : function() {
+        theWater = new bgitem(CANVAS_WIDTH, 150, "#6fb0dc", 0, CANVAS_HEIGHT - 150);
+        this.canvas.width = CANVAS_WIDTH;
+        this.canvas.height = CANVAS_HEIGHT;
+        this.context = this.canvas.getContext("2d");
+        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+        myGameArea.clear();
+    	theWater.update();
+    	this.isStopped = false;
     },
     stop : function() {
         this.isStopped = true;
@@ -72,6 +74,7 @@ var myGameArea = {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
 }
+
 
 function droplet(width, height, color, x, y, type) {
     this.type = type;
@@ -174,6 +177,9 @@ function nextDigit() {
 
 //Run it once so the 3 isn't duplicated
 nextDigit();
+
+// get it to initially draw the canvas
+myGameArea.initialise();
 
 
 </script>
