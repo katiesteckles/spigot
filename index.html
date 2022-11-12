@@ -44,14 +44,15 @@ var frame = 0; //initialise 0-3 loop for frame number
 var myGameArea = {
     canvas : document.createElement("canvas"),
 	start : function() {
-		myDroplet = new droplet(DROPLET_WIDTH, DROPLET_HEIGHT, "blue", (CANVAS_WIDTH/2)-(DROPLET_WIDTH/2), 0 - DROPLET_HEIGHT, 0);
-		theWater = new bgitem(CANVAS_WIDTH, 150, "#6fb0dc", 0, CANVAS_HEIGHT - 150);
-		 this.canvas.width = CANVAS_WIDTH;
-        this.canvas.height = CANVAS_HEIGHT;
-        this.context = this.canvas.getContext("2d");
-        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
-        this.interval = setInterval(updateGameArea, 60); 
-        this.isStopped = false ;         
+		if(this.isStopped) {
+			myDroplet = new droplet(DROPLET_WIDTH, DROPLET_HEIGHT, "blue", (CANVAS_WIDTH/2)-(DROPLET_WIDTH/2), 0 - DROPLET_HEIGHT, 0);
+			this.canvas.width = CANVAS_WIDTH;
+			this.canvas.height = CANVAS_HEIGHT;
+			this.context = this.canvas.getContext("2d");
+			document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+			this.interval = setInterval(updateGameArea, 60); 
+			this.isStopped = false ;
+		}        
     },
     initialise : function() {
         theWater = new bgitem(CANVAS_WIDTH, 150, "#6fb0dc", 0, CANVAS_HEIGHT - 150);
@@ -61,7 +62,7 @@ var myGameArea = {
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         myGameArea.clear();
     	theWater.update();
-    	this.isStopped = false;
+    	this.isStopped = true;
     },
     stop : function() {
         this.isStopped = true;
